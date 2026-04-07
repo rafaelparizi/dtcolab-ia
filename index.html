@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTColab + IA - Infográfico</title>
+    <!-- Tailwind CSS para estilização -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- React e ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Babel para compilar JSX no navegador -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide-react@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // Uso de IIFE para evitar conflitos de escopo global e erros de re-declaração
+        (() => {
+            const { useState, Fragment } = React;
+            
+            // Acesso seguro ao objeto global lucideReact
+            const icons = window.lucideReact || {};
+            const { 
+                Search, Target, Cpu, Share2, Users, FileText, 
+                ChevronRight, Info, CheckCircle2, Circle, 
+                ExternalLink, Eye, X, Play, Rocket, Flag, 
+                Coffee, Clock 
+            } = icons;
+
+            const App = () => {
+                const [activePhase, setActivePhase] = useState(null);
+                const [completedActions, setCompletedActions] = useState({});
+                const [showExample, setShowExample] = useState(null);
+
+                const phases = [
+                    {
+                        id: 'abertura',
+                        title: 'Abertura',
+                        type: 'Preparação',
+                        time: '20 min',
+                        color: 'bg-slate-500',
+                        borderColor: 'border-slate-500',
+                        icon: Rocket ? <Rocket className="w-6 h-6" /> : null,
+                        shape: 'circle',
+                        tools: [],
+                        actions: [
+                            'Formação de grupos multidisciplinares (5 grupos de 6 pessoas)',
+                            'Apresentação da metodologia DTColab',
+                            'Alinhamento inicial e apresentação do Desafio Macro'
+                        ],
+                        examples: [
+                            'Organização: Sentar com pessoas de áreas diferentes para garantir a diversidade de ideias.',
+                            'Explicação: Entender que o Desafio Macro é o ponto de partida amplo que será afunilado nas próximas fases.',
+                            'Dinâmica: Nomear um relator para o grupo.'
+                        ],
+                        collaboration: 'Alinhamento de expectativas e conexão entre os membros do grupo.',
+                        description: 'Apresentação da Metodologia DTColab e Formação de Grupos Multidisciplinares.',
+                        aiExplanation: 'Esta é uma fase puramente humana para estabelecer as bases da colaboração.'
+                    },
+                    {
+                        id: 'descoberta',
+                        title: '1. Descoberta',
+                        type: 'Divergir',
+                        time: '40 min',
+                        color: 'bg-red-500',
+                        borderColor: 'border-red-500',
+                        icon: Search ? <Search className="w-6 h-6" /> : null,
+                        shape: 'diamond',
+                        tools: [{ name: 'Gemini', url: 'https://gemini.google.com/' }],
+                        actions: [
+                            'Pesquisa e Exploração "Desk"',
+                            'Investigação de cenários em instituições globais e brasileiras',
+                            'Elaboração de exemplos de boas práticas e riscos'
+                        ],
+                        examples: [
+                            'Prompt: "Gemini, atue como assistente de pesquisa. Liste como as 5 maiores universidades do Brasil estão implementando IA generativa na sala de aula."',
+                            'Ação: Buscar por "AI in Education report 2024" para coletar dados reais.',
+                            'Prompt: "Quais os riscos éticos mais citados por professores brasileiros no uso do ChatGPT em avaliações?"'
+                        ],
+                        collaboration: 'Discussões sobre os achados e organização das informações coletadas.',
+                        description: 'Investigação profunda sobre como a educação está lidando com a IA no mundo real.',
+                        aiExplanation: 'O Gemini atua como assistente de pesquisa para elaborar cenários, exemplos de boas práticas e riscos.'
+                    },
+                    {
+                        id: 'definicao',
+                        title: '2. Definição',
+                        type: 'Convergir',
+                        time: '30 min',
+                        color: 'bg-yellow-500',
+                        borderColor: 'border-yellow-500',
+                        icon: Target ? <Target className="w-6 h-6" /> : null,
+                        shape: 'diamond',
+                        tools: [{ name: 'NotebookLM', url: 'https://notebooklm.google.com/' }],
+                        actions: [
+                            'Agrupamento e estruturação dos achados da Fase 1',
+                            'Definição do "Desafio Real" de cada mesa',
+                            'Criação da "frase-problema" norteadora'
+                        ],
+                        examples: [
+                            'Ação: Fazer upload dos textos da fase 1 no NotebookLM.',
+                            'Definição: "Como poderíamos usar a IA para tornar a avaliação escolar mais inclusiva para alunos neurodivergentes?"',
+                            'NotebookLM: "Com base nas pesquisas, qual é a maior dor relatada pelos professores de gestão escolar?"'
+                        ],
+                        collaboration: 'Consenso sobre qual problema específico o grupo deseja atacar.',
+                        description: 'Estruturação de problemas e definição do desafio real a ser solucionado.',
+                        aiExplanation: 'O NotebookLM processa os achados da pesquisa inicial para ajudar a definir a frase-problema baseada em dados.'
+                    },
+                    {
+                        id: 'desenvolvimento',
+                        title: '3. Desenvolvimento',
+                        type: 'Divergir',
+                        time: '50 min',
+                        color: 'bg-green-500',
+                        borderColor: 'border-green-500',
+                        icon: Cpu ? <Cpu className="w-6 h-6" /> : null,
+                        shape: 'diamond',
+                        tools: [{ name: 'Gemini Canvas', url: 'https://gemini.google.com/' }],
+                        actions: [
+                            'Produção da solução (roteiro, prompt de sistema ou fluxo)',
+                            'Construção da arquitetura da solução no Gemini Canvas',
+                            'Redação dos guias de implementação',
+                            'Intervalo de 20 minutos (no meio da atividade)'
+                        ],
+                        examples: [
+                            'Prompt Canvas: "Desenvolva um fluxo de trabalho automatizado onde o professor envia um PDF e a IA gera 3 níveis de exercícios diferentes."',
+                            'Dica: Use o Gemini para redigir o passo a passo de como a escola deve implementar essa nova regra de uso de IA.',
+                            'Check: A solução resolve diretamente a frase-problema da fase anterior?'
+                        ],
+                        collaboration: 'Mão na massa coletivo para construir a arquitetura e a lógica da solução.',
+                        description: 'Produção da Solução (Mão na Massa) e configuração da lógica de funcionamento.',
+                        aiExplanation: 'Utiliza-se o Gemini Canvas para construir a arquitetura, configurar a lógica e redigir guias.'
+                    },
+                    {
+                        id: 'entrega',
+                        title: '4. Entrega',
+                        type: 'Convergir',
+                        time: '40 min',
+                        color: 'bg-blue-600',
+                        borderColor: 'border-blue-600',
+                        icon: Share2 ? <Share2 className="w-6 h-6" /> : null,
+                        shape: 'diamond',
+                        tools: [{ name: 'NotebookLM', url: 'https://notebooklm.google.com/' }],
+                        actions: [
+                            'Finalização da solução técnica',
+                            'Preparação do Pitch (3 a 5 minutos)',
+                            'Resumo dos pontos-chave para o documento norteador'
+                        ],
+                        examples: [
+                            'NotebookLM: "Resuma nosso projeto em 3 tópicos de impacto para um pitch de 3 minutos."',
+                            'Ação: Criar um documento compartilhado com o passo a passo da implementação.',
+                            'Pitch: Focar no problema resolvido e no benefício direto para a comunidade escolar.'
+                        ],
+                        collaboration: 'Refinamento do discurso de apresentação para garantir clareza e impacto.',
+                        description: 'Finalização da solução e preparação do Pitch de soluções.',
+                        aiExplanation: 'O NotebookLM ajudará a resumir os pontos-chave e a criar roteiros de impacto para a apresentação.'
+                    },
+                    {
+                        id: 'conclusao',
+                        title: 'Conclusão',
+                        type: 'Apresentação',
+                        time: '40 min',
+                        color: 'bg-indigo-700',
+                        borderColor: 'border-indigo-700',
+                        icon: Flag ? <Flag className="w-6 h-6" /> : null,
+                        shape: 'circle',
+                        tools: [],
+                        actions: [
+                            'Apresentação dos Pitches (3 a 5 minutos por grupo)',
+                            'Debate coletivo sobre as soluções apresentadas',
+                            'Feedback final e encerramento'
+                        ],
+                        examples: [
+                            'Apresentação: Mostrar o protótipo/fluxo criado e explicar como a IA foi utilizada no processo.',
+                            'Debate: Discutir a viabilidade das soluções em diferentes contextos escolares.',
+                            'Encerramento: Refletir sobre a mudança de percepção em relação ao uso de IA.'
+                        ],
+                        collaboration: 'Validação mútua das soluções e troca de experiências entre os grupos.',
+                        description: 'Apresentação Final (Pitch) e Debate sobre soluções inovadoras.',
+                        aiExplanation: 'Fase de validação humana e debate crítico sobre os resultados alcançados.'
+                    }
+                ];
+
+                const toggleAction = (phaseId, actionIndex) => {
+                    setCompletedActions(prev => ({
+                        ...prev,
+                        [phaseId]: {
+                            ...prev[phaseId],
+                            [actionIndex]: !prev[phaseId]?.[actionIndex]
+                        }
+                    }));
+                };
+
+                return (
+                    <div className="min-h-screen bg-slate-50 p-4 md:p-8 text-slate-800">
+                        <div className="max-w-6xl mx-auto">
+                            <header className="text-center mb-12">
+                                <h1 className="text-4xl font-extrabold text-slate-900 mb-2 tracking-tight uppercase">DTColab + IA</h1>
+                                <p className="text-lg text-slate-600 max-w-2xl mx-auto italic">
+                                    Design Thinking e IA Generativa para Inovação Educacional.
+                                </p>
+                            </header>
+
+                            <div className="relative mb-16 px-4">
+                                <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0">
+                                    {phases.map((phase, index) => (
+                                        <Fragment key={phase.id}>
+                                            <button
+                                                onClick={() => setActivePhase(phase)}
+                                                className={`relative group transition-all duration-300 transform ${
+                                                    activePhase?.id === phase.id ? 'scale-110 z-10' : 'hover:scale-105'
+                                                } w-full md:w-40 h-40 flex flex-col items-center justify-center`}
+                                            >
+                                                <div className={`absolute inset-0 transition-colors duration-300 ${
+                                                    activePhase?.id === phase.id ? phase.color : 'bg-white'
+                                                } border-4 ${phase.borderColor} shadow-lg ${
+                                                    phase.shape === 'circle' ? 'rounded-full scale-75' : 'rotate-45 rounded-lg scale-75 md:scale-90'
+                                                } overflow-hidden`}>
+                                                    <div className={`absolute inset-0 opacity-10 flex items-center justify-center ${phase.shape === 'diamond' ? '-rotate-45' : ''}`}>
+                                                        {phase.type === 'Divergir' && ChevronRight ? (
+                                                            <div className="grid grid-cols-2 gap-4">
+                                                                <ChevronRight className="rotate-180" /><ChevronRight />
+                                                                <ChevronRight className="rotate-180" /><ChevronRight />
+                                                            </div>
+                                                        ) : phase.type === 'Convergir' && ChevronRight ? (
+                                                            <div className="grid grid-cols-2 gap-4">
+                                                                <ChevronRight /><ChevronRight className="rotate-180" />
+                                                                <ChevronRight /><ChevronRight className="rotate-180" />
+                                                            </div>
+                                                        ) : null}
+                                                    </div>
+                                                </div>
+                                                
+                                                <div className={`relative flex flex-col items-center justify-center p-2 text-center transition-colors ${
+                                                    activePhase?.id === phase.id ? 'text-white' : 'text-slate-700'
+                                                }`}>
+                                                    {phase.icon}
+                                                    <span className="font-bold text-xs md:text-sm mt-1">{phase.title}</span>
+                                                    <div className="flex items-center gap-1 mt-1">
+                                                        {Clock && <Clock className="w-3 h-3 opacity-60" />}
+                                                        <span className="text-[10px] font-black uppercase tracking-tighter">{phase.time}</span>
+                                                    </div>
+                                                </div>
+                                            </button>
+
+                                            {index === 0 && <div className="hidden md:block w-4 h-0.5 bg-slate-300" />}
+                                            {index === 2 && (
+                                                <div className="hidden md:flex items-center justify-center w-8 h-8 rounded-full bg-slate-800 text-white font-bold z-20 -mx-4 ring-4 ring-white">!</div>
+                                            )}
+                                            {index === 4 && <div className="hidden md:block w-4 h-0.5 bg-slate-300" />}
+                                        </Fragment>
+                                    ))}
+                                </div>
+                                <div className="hidden md:flex justify-between mt-4 text-[10px] font-black text-slate-400 uppercase tracking-widest px-24">
+                                    <div className="flex-1 text-center border-b-2 border-slate-200 pb-1 mr-4">Investigação</div>
+                                    <div className="flex-1 text-center border-b-2 border-slate-200 pb-1 ml-4">Criação</div>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                                {activePhase ? (
+                                    <>
+                                        <div className="lg:col-span-2 bg-white rounded-2xl shadow-xl p-8 border border-slate-100">
+                                            <div className="flex items-center gap-3 mb-6">
+                                                <div className={`p-3 rounded-xl ${activePhase.color} text-white shadow-lg`}>
+                                                    {activePhase.icon}
+                                                </div>
+                                                <div>
+                                                    <h2 className="text-2xl font-bold">{activePhase.title}</h2>
+                                                    <div className="flex items-center gap-2 text-slate-500">
+                                                        {Clock && <Clock className="w-4 h-4" />}
+                                                        <span className="text-sm font-bold">{activePhase.time}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="space-y-6">
+                                                <div>
+                                                    <h3 className="flex items-center gap-2 font-bold text-slate-800 mb-4 uppercase text-sm tracking-widest">
+                                                        {FileText && <FileText className="w-4 h-4 text-blue-500" />} Checklist de Atividades
+                                                    </h3>
+                                                    <ul className="space-y-3">
+                                                        {activePhase.actions.map((action, i) => {
+                                                            const isDone = completedActions[activePhase.id]?.[i];
+                                                            const hasBreak = action.toLowerCase().includes('intervalo');
+                                                            return (
+                                                                <li key={i} className={`flex items-center justify-between gap-3 p-3 rounded-xl border transition-all ${
+                                                                    hasBreak ? 'bg-amber-50 border-amber-200' : 'border-slate-100 bg-slate-50/50 hover:border-slate-300'
+                                                                }`}>
+                                                                    <div onClick={() => toggleAction(activePhase.id, i)} className="flex items-center gap-3 cursor-pointer flex-1">
+                                                                        {isDone ? (
+                                                                            CheckCircle2 && <CheckCircle2 className={`w-6 h-6 shrink-0 ${activePhase.color.replace('bg-', 'text-')}`} />
+                                                                        ) : hasBreak ? (
+                                                                            Coffee && <Coffee className="w-6 h-6 shrink-0 text-amber-500" />
+                                                                        ) : (
+                                                                            Circle && <Circle className="w-6 h-6 shrink-0 text-slate-300" />
+                                                                        )}
+                                                                        <span className={`text-sm md:text-base ${isDone ? 'line-through opacity-40 italic' : 'font-medium'}`}>
+                                                                            {action}
+                                                                        </span>
+                                                                    </div>
+                                                                    <button 
+                                                                        onClick={() => setShowExample({ title: action, text: activePhase.examples[i] })}
+                                                                        className="flex items-center gap-1 px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-600 hover:bg-slate-100 shadow-sm"
+                                                                    >
+                                                                        {Eye && <Eye className="w-3 h-3" />} Exemplo
+                                                                    </button>
+                                                                </li>
+                                                            );
+                                                        })}
+                                                    </ul>
+                                                </div>
+                                                <div className="p-4 bg-indigo-50 border border-indigo-100 rounded-xl">
+                                                    <h3 className="flex items-center gap-2 font-bold text-indigo-900 mb-2">
+                                                        {Users && <Users className="w-5 h-5" />} Foco na Colaboração
+                                                    </h3>
+                                                    <p className="text-indigo-800 text-sm italic">{activePhase.collaboration}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="space-y-6">
+                                            <div className="bg-slate-900 rounded-2xl shadow-xl p-8 text-white relative overflow-hidden">
+                                                <div className="absolute top-0 right-0 p-4 opacity-10">
+                                                    {Cpu && <Cpu className="w-16 h-16" />}
+                                                </div>
+                                                <h3 className="text-xl font-bold mb-6 flex items-center gap-2 underline decoration-blue-500 underline-offset-8">
+                                                    Ecossistema IA
+                                                </h3>
+                                                <div className="space-y-4">
+                                                    {activePhase.tools.length > 0 ? (
+                                                        activePhase.tools.map((tool, i) => (
+                                                            <a key={i} href={tool.url} target="_blank" rel="noopener noreferrer"
+                                                                className="flex items-center justify-between p-4 bg-white/10 rounded-xl border border-white/5 hover:bg-white/20 transition-all group">
+                                                                <div className="flex items-center gap-4">
+                                                                    <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 font-bold">{tool.name.charAt(0)}</div>
+                                                                    <span className="font-semibold">{tool.name}</span>
+                                                                </div>
+                                                                {ExternalLink && <ExternalLink className="w-4 h-4 text-slate-500 group-hover:text-blue-400" />}
+                                                            </a>
+                                                        ))
+                                                    ) : (
+                                                        <div className="p-4 border border-white/10 rounded-xl text-slate-400 text-center text-sm italic">
+                                                            Não aplicável nesta fase.
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                {activePhase.tools.length > 0 && (
+                                                    <div className="mt-8 p-4 bg-blue-500/10 rounded-xl border border-blue-500/20">
+                                                        <p className="text-xs text-blue-300 uppercase tracking-wider font-black mb-2">Prompt Sugerido</p>
+                                                        <p className="text-sm italic text-slate-300 leading-relaxed font-serif">
+                                                            "{activePhase.id === 'descoberta' ? 'Atue como assistente de pesquisa. Liste exemplos de boas práticas...' : 
+                                                              activePhase.id === 'definicao' ? 'Com base nos materiais, qual o desafio real indicado?' :
+                                                              activePhase.id === 'desenvolvimento' ? 'Construa a arquitetura da solução baseada em...' :
+                                                              'Resuma os pontos-chave em tópicos de pitch...'}"
+                                                        </p>
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <div className="bg-white rounded-2xl shadow-lg p-6 border-l-8 border-blue-500">
+                                                <h3 className="text-xs font-black text-slate-400 uppercase mb-2">Papel da IA no Fluxo</h3>
+                                                <p className="text-sm text-slate-700 leading-relaxed font-medium">{activePhase.aiExplanation}</p>
+                                            </div>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <div className="col-span-1 lg:col-span-3 bg-white rounded-2xl border-2 border-dashed border-slate-200 p-12 text-center">
+                                        {Info && <Info className="w-12 h-12 text-slate-300 mx-auto mb-4" />}
+                                        <h2 className="text-xl font-bold text-slate-400 italic underline decoration-slate-200 decoration-4">Selecione uma etapa no diagrama acima</h2>
+                                        <p className="text-slate-400 mt-2">Navegue pelas fases da metodologia DTColab + IA.</p>
+                                    </div>
+                                )}
+                            </div>
+
+                            {showExample && (
+                                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+                                    <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden border border-slate-200 animate-in fade-in zoom-in duration-200">
+                                        <div className="bg-slate-50 p-6 flex justify-between items-start border-b border-slate-100">
+                                            <h3 className="text-lg font-bold text-slate-800 pr-8 leading-tight">{showExample.title}</h3>
+                                            <button onClick={() => setShowExample(null)} className="text-slate-400 hover:text-slate-600 p-1 transition-colors">{X && <X className="w-6 h-6" />}</button>
+                                        </div>
+                                        <div className="p-8">
+                                            <div className="flex items-center gap-2 text-blue-600 font-bold text-sm mb-4 uppercase tracking-widest">{Play && <Play className="w-4 h-4 fill-current" />} Dica & Exemplo</div>
+                                            <div className="bg-blue-50/50 p-6 rounded-xl text-slate-700 leading-relaxed border border-blue-100 font-medium whitespace-pre-wrap">
+                                                {showExample.text}
+                                            </div>
+                                        </div>
+                                        <div className="px-8 py-4 bg-slate-50 text-right">
+                                            <button onClick={() => setShowExample(null)} className="px-6 py-2 bg-slate-800 text-white rounded-lg font-bold hover:bg-slate-700 transition-colors">Fechar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-slate-400 font-bold uppercase tracking-widest">
+                                <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-slate-500" /> Intro</div>
+                                <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-red-500" /> Pesquisa</div>
+                                <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-yellow-500" /> Síntese</div>
+                                <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-green-500" /> Protótipo</div>
+                                <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-blue-600" /> Pitch</div>
+                                <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-indigo-700" /> Conclusão</div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            };
+
+            const root = ReactDOM.createRoot(document.getElementById('root'));
+            root.render(<App />);
+        })();
+    </script>
+</body>
+</html>
