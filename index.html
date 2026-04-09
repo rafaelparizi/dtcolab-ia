@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,9 +17,13 @@
     <script src="https://unpkg.com/lucide-react@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
     </style>
 </head>
+
 <body>
     <div id="root"></div>
 
@@ -26,14 +31,14 @@
         // Uso de IIFE para evitar conflitos de escopo global e erros de re-declaração
         (() => {
             const { useState, Fragment } = React;
-            
+
             // Acesso seguro ao objeto global lucideReact
             const icons = window.lucideReact || {};
-            const { 
-                Search, Target, Cpu, Share2, Users, FileText, 
-                ChevronRight, Info, CheckCircle2, Circle, 
-                ExternalLink, Eye, X, Play, Rocket, Flag, 
-                Coffee, Clock 
+            const {
+                Search, Target, Cpu, Share2, Users, FileText,
+                ChevronRight, Info, CheckCircle2, Circle,
+                ExternalLink, Eye, X, Play, Rocket, Flag,
+                Coffee, Clock
             } = icons;
 
             const App = () => {
@@ -207,38 +212,24 @@
                                 <p className="text-lg text-slate-600 max-w-2xl mx-auto italic">
                                     Design Thinking e IA Generativa para Inovação Educacional.
                                 </p>
+                                <div class="mt-6 max-w-2xl mx-auto">
+                                    <div class="bg-white border border-slate-200 border-l-4 border-l-green-700 rounded-2xl p-6 text-left shadow-sm">
+                                        <div class="flex items-start gap-3">
+                                            <div class="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center shrink-0">
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B6D11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" /></svg>
+                                            </div>
+                                            <div class="flex-1">
+                                                <p class="text-[11px] font-bold text-green-700 uppercase tracking-widest mb-1">Tema da oficina</p>
+                                                <h2 class="text-base font-bold text-slate-800 leading-snug mb-2">Inteligência Artificial no CP2: Co-criando Diretrizes Éticas e Pedagógicas</h2>
+                                                <p class=" text-slate-500 leading-relaxed mb-3">
+                                                    Esta oficina propõe que professores e gestores do CP2 vivenciem a metodologia DTColab para construir coletivamente diretrizes de uso da IA em contextos de ensino e aprendizagem — equilibrando inovação, ética e responsabilidade pedagógica.
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </header>
-
-                            <!-- Card do Tema -->
-<div class="mt-6 max-w-2xl mx-auto">
-  <div class="bg-white border border-slate-200 border-l-4 border-l-green-700 rounded-2xl p-6 text-left shadow-sm">
-    <div class="flex items-start gap-3">
-      <div class="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center shrink-0">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B6D11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
-      </div>
-      <div class="flex-1">
-        <p class="text-[11px] font-bold text-green-700 uppercase tracking-widest mb-1">Tema da oficina</p>
-        <h2 class="text-base font-bold text-slate-800 leading-snug mb-2">Inteligência Artificial no CP2: Co-criando Diretrizes Éticas e Pedagógicas</h2>
-        <p class="text-sm text-slate-500 leading-relaxed mb-3">
-          Esta oficina propõe que professores e gestores do CP2 vivenciem a metodologia DTColab para construir coletivamente diretrizes de uso da IA em contextos de ensino e aprendizagem — equilibrando inovação, ética e responsabilidade pedagógica.
-        </p>
-        <div id="tema-extra" class="hidden text-sm text-slate-500 leading-relaxed border-t border-slate-100 pt-3 mb-3">
-          <p class="mb-2">Ao longo das fases da metodologia Double Diamond adaptada, os participantes irão:</p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong class="font-semibold text-slate-700">Descobrir</strong> como a IA já é usada em instituições de ensino brasileiras e internacionais;</li>
-            <li><strong class="font-semibold text-slate-700">Definir</strong> os desafios reais vivenciados pela comunidade escolar do CP2;</li>
-            <li><strong class="font-semibold text-slate-700">Desenvolver</strong> propostas concretas de políticas e boas práticas com apoio de ferramentas de IA generativa;</li>
-            <li><strong class="font-semibold text-slate-700">Entregar</strong> um documento norteador cocriado, com diretrizes éticas e pedagógicas aplicáveis ao contexto institucional.</li>
-          </ul>
-        </div>
-        <button onclick="var el=document.getElementById('tema-extra');var btn=this;if(el.classList.contains('hidden')){el.classList.remove('hidden');btn.textContent='Ver menos ↑';}else{el.classList.add('hidden');btn.textContent='Ver mais ↓';}" class="text-xs font-bold text-green-700 underline underline-offset-2 hover:text-green-800 bg-transparent border-none cursor-pointer p-0">Ver mais ↓</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Fim Card do Tema -->
-
-                     
 
                             <div className="relative mb-16 px-4">
                                 <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0">
@@ -246,15 +237,12 @@
                                         <Fragment key={phase.id}>
                                             <button
                                                 onClick={() => setActivePhase(phase)}
-                                                className={`relative group transition-all duration-300 transform ${
-                                                    activePhase?.id === phase.id ? 'scale-110 z-10' : 'hover:scale-105'
-                                                } w-full md:w-40 h-40 flex flex-col items-center justify-center`}
+                                                className={`relative group transition-all duration-300 transform ${activePhase?.id === phase.id ? 'scale-110 z-10' : 'hover:scale-105'
+                                                    } w-full md:w-40 h-40 flex flex-col items-center justify-center`}
                                             >
-                                                <div className={`absolute inset-0 transition-colors duration-300 ${
-                                                    activePhase?.id === phase.id ? phase.color : 'bg-white'
-                                                } border-4 ${phase.borderColor} shadow-lg ${
-                                                    phase.shape === 'circle' ? 'rounded-full scale-75' : 'rotate-45 rounded-lg scale-75 md:scale-90'
-                                                } overflow-hidden`}>
+                                                <div className={`absolute inset-0 transition-colors duration-300 ${activePhase?.id === phase.id ? phase.color : 'bg-white'
+                                                    } border-4 ${phase.borderColor} shadow-lg ${phase.shape === 'circle' ? 'rounded-full scale-75' : 'rotate-45 rounded-lg scale-75 md:scale-90'
+                                                    } overflow-hidden`}>
                                                     <div className={`absolute inset-0 opacity-10 flex items-center justify-center ${phase.shape === 'diamond' ? '-rotate-45' : ''}`}>
                                                         {phase.type === 'Divergir' && ChevronRight ? (
                                                             <div className="grid grid-cols-2 gap-4">
@@ -269,10 +257,9 @@
                                                         ) : null}
                                                     </div>
                                                 </div>
-                                                
-                                                <div className={`relative flex flex-col items-center justify-center p-2 text-center transition-colors ${
-                                                    activePhase?.id === phase.id ? 'text-white' : 'text-slate-700'
-                                                }`}>
+
+                                                <div className={`relative flex flex-col items-center justify-center p-2 text-center transition-colors ${activePhase?.id === phase.id ? 'text-white' : 'text-slate-700'
+                                                    }`}>
                                                     {phase.icon}
                                                     <span className="font-bold text-xs md:text-sm mt-1">{phase.title}</span>
                                                     <div className="flex items-center gap-1 mt-1">
@@ -323,9 +310,8 @@
                                                             const isDone = completedActions[activePhase.id]?.[i];
                                                             const hasBreak = action.toLowerCase().includes('intervalo');
                                                             return (
-                                                                <li key={i} className={`flex items-center justify-between gap-3 p-3 rounded-xl border transition-all ${
-                                                                    hasBreak ? 'bg-amber-50 border-amber-200' : 'border-slate-100 bg-slate-50/50 hover:border-slate-300'
-                                                                }`}>
+                                                                <li key={i} className={`flex items-center justify-between gap-3 p-3 rounded-xl border transition-all ${hasBreak ? 'bg-amber-50 border-amber-200' : 'border-slate-100 bg-slate-50/50 hover:border-slate-300'
+                                                                    }`}>
                                                                     <div onClick={() => toggleAction(activePhase.id, i)} className="flex items-center gap-3 cursor-pointer flex-1">
                                                                         {isDone ? (
                                                                             CheckCircle2 && <CheckCircle2 className={`w-6 h-6 shrink-0 ${activePhase.color.replace('bg-', 'text-')}`} />
@@ -338,7 +324,7 @@
                                                                             {action}
                                                                         </span>
                                                                     </div>
-                                                                    <button 
+                                                                    <button
                                                                         onClick={() => setShowExample({ title: action, text: activePhase.examples[i] })}
                                                                         className="flex items-center gap-1 px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-600 hover:bg-slate-100 shadow-sm"
                                                                     >
@@ -388,10 +374,10 @@
                                                     <div className="mt-8 p-4 bg-blue-500/10 rounded-xl border border-blue-500/20">
                                                         <p className="text-xs text-blue-300 uppercase tracking-wider font-black mb-2">Prompt Sugerido</p>
                                                         <p className="text-sm italic text-slate-300 leading-relaxed font-serif">
-                                                            "{activePhase.id === 'descoberta' ? 'Atue como assistente de pesquisa. Liste exemplos de boas práticas...' : 
-                                                              activePhase.id === 'definicao' ? 'Com base nos materiais, qual o desafio real indicado?' :
-                                                              activePhase.id === 'desenvolvimento' ? 'Construa a arquitetura da solução baseada em...' :
-                                                              'Resuma os pontos-chave em tópicos de pitch...'}"
+                                                            "{activePhase.id === 'descoberta' ? 'Atue como assistente de pesquisa. Liste exemplos de boas práticas...' :
+                                                                activePhase.id === 'definicao' ? 'Com base nos materiais, qual o desafio real indicado?' :
+                                                                    activePhase.id === 'desenvolvimento' ? 'Construa a arquitetura da solução baseada em...' :
+                                                                        'Resuma os pontos-chave em tópicos de pitch...'}"
                                                         </p>
                                                     </div>
                                                 )}
@@ -440,12 +426,12 @@
                                 <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-indigo-700" /> Conclusão</div>
                             </div>
                         </div>
-                               <div class="mt-4">
-    <a href="sobre.html" class="text-blue-500 hover:underline flex items-center gap-2 justify-center" target="blank">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-        Ver Documentação do Projeto
-    </a>
-</div>
+                        <div class="mt-4">
+                            <a href="sobre.html" class="text-blue-500 hover:underline flex items-center gap-2 justify-center" target="blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                                Ver Documentação do Projeto
+                            </a>
+                        </div>
                     </div>
                 );
             };
@@ -455,4 +441,5 @@
         })();
     </script>
 </body>
+
 </html>
