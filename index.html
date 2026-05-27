@@ -49,7 +49,7 @@
                 const phases = [
                     {
                         id: 'abertura',
-                        title: 'Abertura',
+                        title: 'Início',
                         type: 'Preparação',
                         time: '20 min',
                         color: 'bg-slate-500',
@@ -58,14 +58,14 @@
                         shape: 'circle',
                         tools: [],
                         actions: [
-                            'Formação de grupos multidisciplinares (5 grupos de 6 pessoas)',
-                            'Apresentação do framework DTColab',
-                            'Alinhamento inicial e apresentação do Desafio Macro'
+                            'Alinhamento inicial com os grupos',
+                            'Apresentação do Desafio Macro',
+                            'Apresentação do framework DTColab'
                         ],
                         examples: [
-                            'Organização: Agrupar pessoas de áreas diferentes para garantir a diversidade de ideias.',
-                            'Explicação: Entender que o Desafio Macro é o ponto de partida amplo que será afunilado nas próximas Etapa.',
-                            'Dinâmica: Nomear um líder para o grupo.'
+                            'Organização: Escolher um Líder para o grupo.',
+                            'Como transformar dados públicos dispersos sobre gastos governamentais em informação compreensível, útil e fiscalizável pela sociedade?',
+                            'Atividade: apresentar o desafio macro que a partir dele será definido o problema a ser trabalhado pelo grupo.'
                         ],
                         collaboration: 'Alinhamento de expectativas e conexão entre os membros do grupo.',
                         description: 'Apresentação da Metodologia DTColab e Formação de Grupos Multidisciplinares.',
@@ -75,7 +75,7 @@
                         id: 'descoberta',
                         title: '1. Descoberta',
                         type: 'Divergir',
-                        time: '40 min',
+                        time: '20 min',
                         color: 'bg-red-500',
                         borderColor: 'border-red-500',
                         icon: Search ? <Search className="w-6 h-6" /> : null,
@@ -87,9 +87,9 @@
                             'Elaboração de exemplos de boas práticas e riscos'
                         ],
                         examples: [
-                            'Prompt: "Gemini, atue como assistente de pesquisa. Liste como as 5 maiores universidades do Brasil estão implementando IA generativa na sala de aula."',
+                            'Prompt: "Gemini, atue como assistente de pesquisa. Me ajude com...."',
                             'Ação: Buscar por "AI in Education report 2024" para coletar dados reais.',
-                            'Prompt: "Quais os riscos éticos mais citados por professores brasileiros no uso do ChatGPT em avaliações?"'
+                            'Prompt: "Como podemos fazer para..."'
                         ],
                         collaboration: 'Discussões sobre os achados e organização das informações coletadas.',
                         description: 'Investigação profunda sobre como a educação está lidando com a IA no mundo real.',
@@ -99,7 +99,7 @@
                         id: 'definicao',
                         title: '2. Definição',
                         type: 'Convergir',
-                        time: '30 min',
+                        time: '20 min',
                         color: 'bg-yellow-500',
                         borderColor: 'border-yellow-500',
                         icon: Target ? <Target className="w-6 h-6" /> : null,
@@ -112,8 +112,8 @@
                         ],
                         examples: [
                             'Ação: Fazer upload dos textos da etapa 1 no NotebookLM.',
-                            'Definição: "Como podemos integrar a Inteligência Artificial no cotidiano do CP2 de forma ética, produtiva e pedagógica"',
-                            'NotebookLM: "Com base nas pesquisas, qual é a maior dor relatada pelos professores na gestão escolar?"'
+                            'Definição: "Como transformar dados públicos dispersos sobre gastos governamentais em informação compreensível, útil e fiscalizável pela sociedade?"',
+                            'NotebookLM: "Com base nas pesquisas, qual é a maior dor relatada pelos usuários?"'
                         ],
                         collaboration: 'Consenso sobre qual problema específico o grupo deseja atacar.',
                         description: 'Estruturação de problemas e definição do desafio real a ser solucionado.',
@@ -123,7 +123,7 @@
                         id: 'desenvolvimento',
                         title: '3. Desenvolvimento',
                         type: 'Divergir',
-                        time: '50 min',
+                        time: '180 min',
                         color: 'bg-green-500',
                         borderColor: 'border-green-500',
                         icon: Cpu ? <Cpu className="w-6 h-6" /> : null,
@@ -148,7 +148,7 @@
                         id: 'entrega',
                         title: '4. Entrega',
                         type: 'Convergir',
-                        time: '40 min',
+                        time: '60 min',
                         color: 'bg-blue-600',
                         borderColor: 'border-blue-600',
                         icon: Share2 ? <Share2 className="w-6 h-6" /> : null,
@@ -170,9 +170,9 @@
                     },
                     {
                         id: 'conclusao',
-                        title: 'Conclusão',
+                        title: 'Apresentação',
                         type: 'Apresentação',
-                        time: '40 min',
+                        time: '60 min',
                         color: 'bg-indigo-700',
                         borderColor: 'border-indigo-700',
                         icon: Flag ? <Flag className="w-6 h-6" /> : null,
@@ -210,7 +210,7 @@
                             <header className="text-center mb-12">
                                 <h1 className="text-4xl font-extrabold text-slate-900 mb-2 tracking-tight uppercase">DTColab + IA</h1>
                                 <p className="text-lg text-slate-600 max-w-2xl mx-auto italic">
-                                    Design Thinking e IA Generativa para Inovação Educacional.
+                                    Design Thinking e IA Generativa para Inovação.
                                 </p>
                                 <div class="mt-6 max-w-2xl mx-auto">
                                     <div class="bg-white border border-slate-200 border-l-4 border-l-green-700 rounded-2xl p-6 text-left shadow-sm">
@@ -220,9 +220,12 @@
                                             </div>
                                             <div class="flex-1">
                                                 <p class="text-[11px] font-bold text-green-700 uppercase tracking-widest mb-1">Tema da oficina</p>
-                                                <h2 class="text-base font-bold text-slate-800 leading-snug mb-2">Inteligência Artificial no CP2: Co-criando Diretrizes Éticas e Pedagógicas</h2>
+                                                <h2 class="text-base font-bold text-slate-800 leading-snug mb-2">MaratonaColab - SBSC 2026</h2>
                                                 <p class=" text-slate-500 leading-relaxed mb-3">
-                                                    Este minicurso propõe que professores, pesquisadores, educadores e alunos de pós-graduação do Colégio Pedro II vivenciem a metodologia DTColab para construir coletivamente diretrizes de uso da IA em contextos de ensino e aprendizagem — equilibrando inovação, ética e responsabilidade pedagógica.
+                                                    <strong>Tema central:</strong> Coleta, correlação e análise de dados públicos sobre gastos governamentais.<br /><br />
+
+                                                    <strong>Desafio: Como transformar dados públicos dispersos sobre gastos governamentais em informação compreensível, útil e fiscalizável pela sociedade?</strong>
+
                                                 </p>
 
                                             </div>
