@@ -58,14 +58,14 @@
                         shape: 'circle',
                         tools: [],
                         actions: [
-                            'Alinhamento inicial com os grupos',
+                            'Alinhamento inicial com as equipes',
                             'Apresentação do Desafio Macro',
                             'Apresentação do framework DTColab'
                         ],
                         examples: [
-                            'Organização: Escolher um Líder para o grupo.',
-                            'Como transformar dados públicos dispersos sobre gastos governamentais em informação compreensível, útil e fiscalizável pela sociedade?',
-                            'Atividade: apresentar o desafio macro que a partir dele será definido o problema a ser trabalhado pelo grupo.'
+                            'Organização: Identificar o Líder da equipe seguindo as orientações do Facilitador.',
+                            'Desafio: Como transformar dados públicos dispersos sobre gastos governamentais em informação compreensível, útil e fiscalizável pela sociedade?',
+                            'Explicação: Entender que o desafio macro é ponto de partida para descoberta de um problema real a ser trabalhado nas etapas seguintes.'
                         ],
                         collaboration: 'Alinhamento de expectativas e conexão entre os membros do grupo.',
                         description: 'Apresentação da Metodologia DTColab e Formação de Grupos Multidisciplinares.',
@@ -87,9 +87,9 @@
                             'Elaboração de exemplos de boas práticas e riscos'
                         ],
                         examples: [
-                            'Prompt: "Gemini, atue como assistente de pesquisa. Me ajude com...."',
+                            'Prompt: "Atue como assistente de pesquisa. Me ajude com..."',
                             'Ação: Buscar por "AI in Education report 2024" para coletar dados reais.',
-                            'Prompt: "Como podemos fazer para..."'
+                            'Prompt: "Atue como assistente de pesquisa. Me ajude com..."'
                         ],
                         collaboration: 'Discussões sobre os achados e organização das informações coletadas.',
                         description: 'Investigação profunda sobre como a educação está lidando com a IA no mundo real.',
@@ -107,13 +107,13 @@
                         tools: [{ name: 'NotebookLM', url: 'https://notebooklm.google.com/' }],
                         actions: [
                             'Agrupamento e estruturação dos achados da Etapa 1',
-                            'Definição do "Desafio Real" de cada equipe',
+                            'Identificação do desafio real/problema”',
                             'Criação da "frase-problema" norteadora'
                         ],
                         examples: [
                             'Ação: Fazer upload dos textos da etapa 1 no NotebookLM.',
                             'Definição: "Como transformar dados públicos dispersos sobre gastos governamentais em informação compreensível, útil e fiscalizável pela sociedade?"',
-                            'NotebookLM: "Com base nas pesquisas, qual é a maior dor relatada pelos usuários?"'
+                            'Frase-Problema: Formar uma frase que declare o problema (no formato de pergunta) a ser trabalhado pela equipe. Por exemplo: “Como facilitar a comunicação entre cidadãos e órgãos de segurança pública para relatar alguma situação de perigo ou pedir ajuda?”'
                         ],
                         collaboration: 'Consenso sobre qual problema específico o grupo deseja atacar.',
                         description: 'Estruturação de problemas e definição do desafio real a ser solucionado.',
@@ -130,15 +130,16 @@
                         shape: 'diamond',
                         tools: [{ name: 'Gemini Canvas', url: 'https://gemini.google.com/' }],
                         actions: [
-                            'Produção da solução (roteiro, prompt de sistema ou fluxo)',
-                            'Construção do protótipo da solução no Gemini Canvas',
-                            'Redação dos guias de implementação',
+                            'Pensar fora da caixa (até mesmo sem caixas)',
+                            'Construção do protótipo da solução',
+                            // 'Redação dos guias de implementação',
                             'Intervalo de 20 minutos (no meio da atividade)'
                         ],
                         examples: [
-                            'Prompt Canvas: "Desenvolva um fluxo de trabalho automatizado onde o professor envia um PDF e a IA gera 3 níveis de exercícios diferentes."',
-                            'Dica: Use o Gemini para redigir o passo a passo de como a escola deve implementar essa nova regra de uso de IA.',
-                            'Check: A solução resolve diretamente a frase-problema da etapa anterior?'
+                            'Brainstorming: Todos devem gerar ideias (pensar fora da caixa) para solucionar o problema definido na etapa anterior. No final, a equipe deve coletar, categorizar, refinar e selecionar as melhores, mais práticas e inovadoras dentre as ideias geradas.',
+                            'Dica: Use o Gemini para sugerir um protótipo de solução com as ideias geradas pela equipe.',
+                            // 'Check: A solução resolve diretamente a frase-problema da etapa anterior?'
+                            'Hora de exercitar o corpo e fazer um lanche'
                         ],
                         collaboration: 'Mão na massa coletivo para construir o protótipo e a lógica da solução.',
                         description: 'Produção da Solução (Mão na Massa) e configuração da lógica de funcionamento.',
@@ -156,13 +157,13 @@
                         tools: [{ name: 'NotebookLM', url: 'https://notebooklm.google.com/' }],
                         actions: [
                             'Finalização da solução proposta',
-                            'Preparação do Pitch (3 a 5 minutos)',
-                            'Resumo dos pontos-chave das propostas'
+                            'Preparação do Pitch',
+                            'Preparação da Apresentação'
                         ],
                         examples: [
-                            'NotebookLM: "Resuma nosso projeto em 3 tópicos de impacto para um pitch de 3 minutos."',
-                            'Ação: Criar um documento compartilhado com o passo a passo da implementação.',
-                            'Pitch: Focar no problema resolvido e no benefício direto para a comunidade escolar.'
+                            'NotebookLM: "Resuma nosso projeto em 3 tópicos de impacto para um pitch de 5 minutos."',
+                            'Atue como um especialista em inovação e comunicação persuasiva. Crie um guia claro, objetivo e bem estruturado com os principais pontos que devem compor um pitch de 5 minutos sobre um problema identificado e uma solução desenvolvida por meio do Design Thinking.',
+                            'Apresentação: preparar a apresentação com o conteúdo gerado para o Pitch no item anterior. Usar a ferramenta de IA de sua preferência para gerar a apresentação no formato de pitch.'
                         ],
                         collaboration: 'Refinamento do discurso de apresentação para garantir clareza e impacto.',
                         description: 'Finalização da solução e preparação do Pitch de soluções.',
@@ -179,16 +180,18 @@
                         shape: 'circle',
                         tools: [],
                         actions: [
-                            'Apresentação dos Pitches (3 a 5 minutos por grupo)',
-                            'Debate coletivo sobre as soluções apresentadas',
-                            'Feedback final e encerramento'
+                            'Apresentação dos pitches (3 min apresentação + 2 min perguntas)',
+                            'Avaliação das soluções',
+                            'Feedback final e encerramento',
+                            'Entrega da Solução'
                         ],
                         examples: [
-                            'Apresentação: Mostrar o protótipo/fluxo criado e explicar como a IA foi utilizada no processo.',
-                            'Debate: Discutir a viabilidade das soluções em diferentes contextos escolares.',
-                            'Encerramento: Refletir sobre a mudança de percepção em relação ao uso de IA.'
+                            'Apresentação: Mostrar o protótipo/fluxo criado e defender a solução!',
+                            'Avaliação: as soluções serão avaliadas por uma comissão julgadora formada por 3 profissionais relacionados ao tema do desafio e tecnologias colaborativas.',
+                            'Percepção do cliente sobre as soluções apresentadas e divulgação da(s) equipe(s) vencedoras.',
+                            'Entrega: Preencher o formulário de entrega com as informações solicitadas, incluindo arquivo com print das telas da solução e link de onde se encontra a solução proposta pela equipe. Acesse o formulário no link informado pelo Facilitador.'
                         ],
-                        collaboration: 'Validação mútua das soluções e troca de experiências entre os grupos.',
+                        collaboration: 'Validação das soluções com a banca avaliadora',
                         description: 'Apresentação Final (Pitch) e Debate sobre soluções inovadoras.',
                         aiExplanation: 'Etapa de validação humana e debate crítico sobre os resultados alcançados.'
                     }
@@ -220,17 +223,8 @@
                                             </div>
                                             <div class="flex-1">
                                                 <p class="text-[11px] font-bold text-green-700 uppercase tracking-widest mb-1">MaratonaColab - SBSC 2026</p>
-                                                <h2 class="text-base font-bold text-slate-800 leading-snug mb-2">Tema</h2>
-                                                <p class=" text-slate-500 leading-relaxed mb-3">
-                                                    Coleta, correlação e análise de dados públicos sobre gastos governamentais.<br /><br />
+                                                <p>Competição gratuita realizada no Simpósio Brasileiro de Sistemas Colaborativos (SBSC), conduzida pela abordagem de Design Thinking, na qual equipes são desafiadas a propor soluções inovadoras para problemas reais utilizando sistemas colaborativos.</p>
 
-                                                </p>
-                                                <h2 class="text-base font-bold text-slate-800 leading-snug mb-2">Desafio</h2>
-                                                <p class=" text-slate-500 leading-relaxed mb-3">
-
-                                                    Como transformar dados públicos dispersos sobre gastos governamentais em informação compreensível, útil e fiscalizável pela sociedade?
-
-                                                </p>
 
                                             </div>
                                         </div>
@@ -425,12 +419,12 @@
                             )}
 
                             <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-slate-400 font-bold uppercase tracking-widest">
-                                <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-slate-500" /> Intro</div>
+                                <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-slate-500" /> Início</div>
                                 <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-red-500" /> Pesquisa</div>
                                 <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-yellow-500" /> Síntese</div>
                                 <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-green-500" /> Protótipo</div>
                                 <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-blue-600" /> Pitch</div>
-                                <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-indigo-700" /> Conclusão</div>
+                                <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-indigo-700" /> Encerramento</div>
                             </div>
                         </div>
                         <div class="mt-4">
