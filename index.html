@@ -233,12 +233,26 @@
                             </header>
 
                             <div className="relative mb-16 px-4">
+                                {/* Seta de sequência — fica atrás de tudo */}
+                                <div className="hidden md:block absolute inset-x-0" style={{top:'50%', transform:'translateY(-50%)', zIndex:0, pointerEvents:'none', padding:'0 80px'}}>
+                                    <svg width="100%" height="28" viewBox="0 0 1000 28" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <defs>
+                                            <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                <stop offset="0%" stopColor="#94a3b8" stopOpacity="0.5"/>
+                                                <stop offset="100%" stopColor="#94a3b8" stopOpacity="0.6"/>
+                                            </linearGradient>
+                                        </defs>
+                                        <line x1="4" y1="14" x2="1000" y2="14" stroke="url(#arrowGrad)" strokeWidth="10" strokeLinecap="round"/>
+                                    </svg>
+                                </div>
+
                                 <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0">
                                     {phases.map((phase, index) => (
                                         <Fragment key={phase.id}>
                                             <button
                                                 onClick={() => setActivePhase(phase)}
-                                                className={`relative group transition-all duration-300 transform ${activePhase?.id === phase.id ? 'scale-110 z-10' : 'hover:scale-105'
+                                                style={{zIndex: activePhase?.id === phase.id ? 30 : (phases.length - index + 1)}}
+                                                className={`relative group transition-all duration-300 transform ${activePhase?.id === phase.id ? 'scale-110' : 'hover:scale-105'
                                                     } w-full md:w-40 h-40 flex flex-col items-center justify-center`}
                                             >
                                                 <div className={`absolute inset-0 transition-colors duration-300 ${activePhase?.id === phase.id ? phase.color : 'bg-white'
@@ -270,15 +284,34 @@
                                                 </div>
                                             </button>
 
-                                            {index === 0 && <div className="hidden md:block w-4 h-0.5 bg-slate-300" />}
-                                            {index === 2 && (
-                                                <div className="hidden md:flex items-center justify-center w-8 h-8 rounded-full bg-slate-800 text-white font-bold z-20 -mx-4 ring-4 ring-white">!</div>
+                                            {index === 0 && (
+                                                <div className="hidden md:flex items-center" style={{flexShrink:0, marginLeft:'16px', marginRight:'32px', zIndex:2}}>
+                                                    <svg width="52" height="44" viewBox="0 0 52 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <polygon points="0,0 36,0 52,22 36,44 0,44 16,22" fill="#1e3a5f"/>
+                                                    </svg>
+                                                </div>
                                             )}
-                                            {index === 4 && <div className="hidden md:block w-4 h-0.5 bg-slate-300" />}
+                                            {index === 4 && (
+                                                <div className="hidden md:flex items-center" style={{flexShrink:0, marginLeft:'32px', marginRight:'16px', zIndex:2}}>
+                                                    <svg width="52" height="44" viewBox="0 0 52 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <polygon points="0,0 36,0 52,22 36,44 0,44 16,22" fill="#1e3a5f"/>
+                                                    </svg>
+                                                </div>
+                                            )}
+                                            {index === 2 && (
+                                                <div className="hidden md:flex flex-col items-center" style={{position:'relative', zIndex:25, margin:'0 16px', flexShrink:0}}>
+                                                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-slate-800 text-white font-bold ring-4 ring-white" style={{fontSize:'16px'}}>!</div>
+                                                    <svg width="12" height="44" viewBox="0 0 12 44" className="mt-1">
+                                                        <line x1="6" y1="0" x2="6" y2="36" stroke="#475569" strokeWidth="2"/>
+                                                        <polygon points="2,36 10,36 6,44" fill="#475569"/>
+                                                    </svg>
+                                                    <span className="text-[9px] font-black text-slate-600 uppercase tracking-widest text-center leading-tight whitespace-nowrap">Problema<br/>definido</span>
+                                                </div>
+                                            )}
                                         </Fragment>
                                     ))}
                                 </div>
-                                <div className="hidden md:flex justify-between mt-4 text-[10px] font-black text-slate-400 uppercase tracking-widest px-24">
+                                <div className="hidden md:flex justify-between mt-10 text-[10px] font-black text-slate-400 uppercase tracking-widest px-24">
                                     <div className="flex-1 text-center border-b-2 border-slate-200 pb-1 mr-4">Investigação</div>
                                     <div className="flex-1 text-center border-b-2 border-slate-200 pb-1 ml-4">Criação</div>
                                 </div>
